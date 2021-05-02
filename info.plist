@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>create.markdown.topic</string>
+	<string>obsidian.management.tools</string>
 	<key>category</key>
 	<string>Productivity</string>
 	<key>connections</key>
@@ -29,7 +29,7 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Create topic</string>
+	<string>Manage Obsidian</string>
 	<key>objects</key>
 	<array>
 		<dict>
