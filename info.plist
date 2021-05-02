@@ -12,7 +12,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>146F331A-B5EC-4BD2-BA42-C14254B3EFC7</string>
+				<string>1A555006-F41C-43A2-B742-A7048C1C5116</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -58,9 +58,9 @@
 				<key>queuemode</key>
 				<integer>2</integer>
 				<key>runningsubtext</key>
-				<string>正在知识库种搜索相关话题</string>
+				<string>正在知识库中搜索相关话题</string>
 				<key>script</key>
-				<string>python create_topic.py {query}</string>
+				<string>python overall_topic.py {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -68,7 +68,7 @@
 				<key>subtext</key>
 				<string>打开一个相关主题或创建一个新的主题</string>
 				<key>title</key>
-				<string>Create topic in knowledge repository</string>
+				<string>Create topic</string>
 				<key>type</key>
 				<integer>5</integer>
 				<key>withspace</key>
@@ -84,29 +84,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>adduuid</key>
+				<key>concurrently</key>
 				<false/>
-				<key>allowemptyfiles</key>
-				<true/>
-				<key>createintermediatefolders</key>
-				<false/>
-				<key>filename</key>
-				<string></string>
-				<key>filetext</key>
-				<string>{query}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>relativepathmode</key>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>python create_topic.py {query}</string>
+				<key>scriptargtype</key>
 				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
-				<integer>1</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.writefile</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>146F331A-B5EC-4BD2-BA42-C14254B3EFC7</string>
+			<string>1A555006-F41C-43A2-B742-A7048C1C5116</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -162,36 +158,39 @@
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>146F331A-B5EC-4BD2-BA42-C14254B3EFC7</key>
+		<key>1A555006-F41C-43A2-B742-A7048C1C5116</key>
 		<dict>
 			<key>xpos</key>
-			<integer>365</integer>
+			<integer>335</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>130</integer>
 		</dict>
 		<key>9F01C891-3855-44D0-A2CA-5B7F602E0D76</key>
 		<dict>
 			<key>xpos</key>
-			<integer>180</integer>
+			<integer>105</integer>
 			<key>ypos</key>
-			<integer>165</integer>
+			<integer>40</integer>
 		</dict>
 		<key>C25CD45F-286D-494A-BBF9-038E752C5608</key>
 		<dict>
 			<key>xpos</key>
-			<integer>180</integer>
+			<integer>105</integer>
 			<key>ypos</key>
-			<integer>315</integer>
+			<integer>190</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
 		<key>knowledge</key>
 		<string>/Users/songshgeo/Documents/Dropbox/Knowledge</string>
+		<key>topic_path</key>
+		<string>Tools/Tags/Topic</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
 		<string>knowledge</string>
+		<string>topic_path</string>
 	</array>
 	<key>version</key>
 	<string></string>
