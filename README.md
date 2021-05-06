@@ -53,10 +53,10 @@ Experts (2021-05-05):
 """
 ```
 
-- Assign the path of your Obsidian-Knowledge-Repository  (OKR) and an output path of auto-export anki file.
+- Assign the path of your Obsidian-Knowledge-Repository  (OKR), and an output path of auto-export anki file.
 - Using keyword *mob* (managing obsidian) to activate existed managing functions. 
-- After input *anki* as query following *mob*, it will sendback all eligible experts in each note. 
-- Press *Enter* to export all eligible experts into a formated file which can be easily import to your anki. 
+- After input *anki* as query following *mob*, it will send back all eligible experts in each note. 
+- Press *Enter* to export all eligible experts into a formatted file which can be easily import to your anki. 
 
 ## Change Log:
 
