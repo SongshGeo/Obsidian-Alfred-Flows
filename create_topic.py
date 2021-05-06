@@ -15,11 +15,7 @@ sys.setdefaultencoding("utf-8")
 
 def main(wf):
     # Get query from Alfred
-    if len(wf.args):
-        query = wf.args[0]
-    else:
-        query = None
-
+    query = wf.args[0]
     d = date.today().strftime("%Y-%m-%d")
     text = """创建日期: %s\n中译：\n变体：""" % d
 

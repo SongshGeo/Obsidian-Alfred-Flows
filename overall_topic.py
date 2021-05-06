@@ -8,8 +8,44 @@
 import sys
 import os
 from workflow import Workflow
-reload(sys) 
+reload(sys)
 sys.setdefaultencoding("utf-8")
+
+REP = os.getenv('knowledge', '').strip()
+IGNORE = [folder.strip() for folder in os.getenv('ignore', '').split(",")]
+
+
+def get_file_paths():
+    """
+    遍历知识库，获得知识库下每个子文件夹的名字与路径
+    Returns: 字典对象，所有知识库下的子文件夹
+    """
+    sub_dirs = {}
+    # 遍历知识库中的所有文件夹，对每个文件夹获取绝对路径
+    for item in os.listdir(REP):
+        unhidden_folder_path = os.path.join(REP, item.strip("."))
+        rule_1 = os.path.isdir(unhidden_folder_path)
+        rule_2 = item not in IGNORE
+        if rule_1 & rule_2:
+            sub_dirs[item] = unhidden_folder_path
+
+    return sorted(sub_dirs)
+
+
+def get_all_markdown_file_paths():
+    sub_dirs = get_file_paths()
+    file_dic = {}
+    # 对获取的路径按文件夹名字进行排序，并遍历统计次数
+    for sub_dir in sub_dirs:
+        folder_path = os.path.join(REP, sub_dir)
+        for root, dirs, files in os.walk(folder_path):
+            for doc in files:
+                if doc.endswith(".md"):
+                    file_path = os.path.join(root, doc)
+                    file_dic[file_path] = doc
+                else:
+                    pass
+    return file_dic
 
 
 def search_files_content(wf, keyword):
@@ -26,20 +62,12 @@ def search_files_content(wf, keyword):
 
     # 一个计数字典，数每个文件夹里
     count_dic = {}
-    sub_dirs = {}
     total = 0
 
-    # 遍历知识库中的所有文件夹，对每个文件夹获取绝对路径
-    for item in os.listdir(knowledge_path):
-        unhidden_folder_path = os.path.join(knowledge_path, item.strip("."))
-        rule_1 = os.path.isdir(unhidden_folder_path)
-        if rule_1:
-            sub_dirs[item] = unhidden_folder_path
-
     # 对获取的路径按文件夹名字进行排序，并遍历统计次数
-    for folder in sorted(sub_dirs):
-        count_dic[folder] = 0
-        folder_path = os.path.join(knowledge_path, folder)
+    for sub_dir in get_file_paths():
+        count_dic[sub_dir] = 0
+        folder_path = os.path.join(knowledge_path, sub_dir)
         for root, dirs, files in os.walk(folder_path):
             for doc in files:
                 if doc.endswith(".md"):
@@ -53,13 +81,13 @@ def search_files_content(wf, keyword):
                         text = file_obj.read()
                         # 判断是否包括搜索的关键字
                         if keyword in text:
-                            count_dic[folder] += 1
+                            count_dic[sub_dir] += 1
                             total += 1
 
     path = os.path.join(knowledge_path, tag_path, "%s.md" % keyword)
     wf.add_item(
-        title="%d matched in sum." % total,
-        subtitle="Create this keyword as your 'Topic'?",
+        title="%d matched notes in sum." % total,
+        subtitle="Create '%s' as your 'Topic'?" % keyword,
         valid=True,
         arg=path
     )
@@ -74,10 +102,10 @@ def save_fre_into_item(wf, count_dic, query):
         count_dic: 统计频次的文件夹
         query: 查询词
     """
-    for folder in sorted(count_dic):
+    for item in sorted(count_dic):
         wf.add_item(
-            title=folder,
-            subtitle="There are %s related results in this category." % count_dic[folder],
+            title=item,
+            subtitle="There are %s related results in this category." % count_dic[item],
             valid=False,
             arg=query
         )
@@ -85,15 +113,15 @@ def save_fre_into_item(wf, count_dic, query):
 
 def main(wf):
     # Get query from Alfred
-    if len(wf.args):
-        query = wf.args[0]
+    query = wf.args[0]
+    if not isinstance(query, unicode):
+        query = query.decode('utf-8')
     else:
-        query = None
+        query = query.strip().lower()
 
     # If script was passed a query, use it to filter file
-    if query:
-        count = search_files_content(wf, query)
-        save_fre_into_item(wf, count, query)
+    count = search_files_content(wf, query)
+    save_fre_into_item(wf, count, query)
     # Send feedbacks into alfred
     wf.send_feedback()
 

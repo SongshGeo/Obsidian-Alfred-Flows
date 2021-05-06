@@ -21,11 +21,24 @@
 				<false/>
 			</dict>
 		</array>
+		<key>EFDD4F73-4C2B-43E8-95FA-2968796BAC06</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EA9F3D33-0F05-45C0-8011-EC49C7D21399</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
-	<string>Shuang Song</string>
+	<string>SongshGeo</string>
 	<key>description</key>
-	<string>Create a topic-md file in folder</string>
+	<string>Managing your obsidian knowledge repository with Alfred one-hotkey.</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -60,7 +73,7 @@
 				<key>runningsubtext</key>
 				<string>正在知识库中搜索相关话题</string>
 				<key>script</key>
-				<string>python overall_topic.py {query}</string>
+				<string>/usr/bin/python overall_topic.py "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -89,7 +102,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>python create_topic.py {query}</string>
+				<string>/usr/bin/python create_topic.py "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -101,6 +114,29 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>1A555006-F41C-43A2-B742-A7048C1C5116</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/bin/python to_anki.py</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>EA9F3D33-0F05-45C0-8011-EC49C7D21399</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -120,19 +156,19 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>name</string>
+				<string>mob</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<true/>
 				<key>queuedelaymode</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>queuemode</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>python test.py {query}</string>
+				<string>/usr/bin/python manage.py "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -140,7 +176,7 @@
 				<key>subtext</key>
 				<string></string>
 				<key>title</key>
-				<string>Create a name in knowledge rep.</string>
+				<string>Manage obsidian knowledge rep.</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -149,13 +185,13 @@
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>C25CD45F-286D-494A-BBF9-038E752C5608</string>
+			<string>EFDD4F73-4C2B-43E8-95FA-2968796BAC06</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>I prefer to use Alfred to customise my own workflow than to install a bunch of plug-ins bundled with the software. This allows for light coupling between my tools and software, which creates more possibilities and reduces dependency on one tool or another. This workflow is made by [Alfred-workflow in python](https://github.com/deanishe/alfred-workflow).</string>
 	<key>uidata</key>
 	<dict>
 		<key>1A555006-F41C-43A2-B742-A7048C1C5116</key>
@@ -163,7 +199,7 @@
 			<key>xpos</key>
 			<integer>335</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>105</integer>
 		</dict>
 		<key>9F01C891-3855-44D0-A2CA-5B7F602E0D76</key>
 		<dict>
@@ -172,16 +208,27 @@
 			<key>ypos</key>
 			<integer>40</integer>
 		</dict>
-		<key>C25CD45F-286D-494A-BBF9-038E752C5608</key>
+		<key>EA9F3D33-0F05-45C0-8011-EC49C7D21399</key>
+		<dict>
+			<key>xpos</key>
+			<integer>335</integer>
+			<key>ypos</key>
+			<integer>245</integer>
+		</dict>
+		<key>EFDD4F73-4C2B-43E8-95FA-2968796BAC06</key>
 		<dict>
 			<key>xpos</key>
 			<integer>105</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>345</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
+		<key>anki_output</key>
+		<string>/Users/songshgeo/Downloads</string>
+		<key>ignore</key>
+		<string>Album, </string>
 		<key>knowledge</key>
 		<string>/Users/songshgeo/Documents/Dropbox/Knowledge</string>
 		<key>topic_path</key>
@@ -189,12 +236,14 @@
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
-		<string>knowledge</string>
+		<string>ignore</string>
 		<string>topic_path</string>
+		<string>knowledge</string>
+		<string>anki_output</string>
 	</array>
 	<key>version</key>
-	<string></string>
+	<string>0.0.1</string>
 	<key>webaddress</key>
-	<string>https://github.com/SongshGeo/My-Alfred-WorkFlows</string>
+	<string>https://github.com/SongshGeo/Obsidian-Managing-Alfred-WorkFlows</string>
 </dict>
 </plist>
